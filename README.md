@@ -9,6 +9,10 @@ I have created a simple web application to send command to Raspberry Pi. The web
 
 **Screenshots**
 
+![Raspberry Pi](https://raw.githubusercontent.com/krvarma/RPiSpeechSynthesis/master/images/raspberrypi.JPG)
 
+![Web App](https://raw.githubusercontent.com/krvarma/RPiSpeechSynthesis/master/images/web.png)
 
 **Demo Video**
+
+[Demo Video](https://www.youtube.com/watch?v=tEOU5tS3x4M)
