@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="jquery.blockUI.js"></script>
+	<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+	<style>
+        .body {
+            text-align: left;
+            background-color: #F3F3F3;
+			font-family: verdana;
+			font-size: 8pt;
+        }
+		
+		.inputtable {
+            
+        }
+		
+		.inputlabel {
+            font-weight: bold;
+            padding: 8px 5px;
+            color: #444;
+            border: 1px solid #d4d4d4;
+            line-height: 20px;
+            text-align: left;
+            cursor: pointer;
+        }
+		
+		.inputfield {
+            padding: 8px 8px;
+            border: 1px solid #d4d4d4;
+            line-height: 20px;
+        }
+		
+		.inputbutton {
+            margin: 0;
+            padding: 5px 5px;
+            font: inherit;
+            line-height: 20px;
+        }
+	</style>
+	<script>
+		var pubnub = PUBNUB.init({
+			publish_key: 'pub-c-60886db0-45cd-4921-9864-a4740e5493d8',
+			subscribe_key: 'sub-c-075dba22-0cfe-11e4-8880-02ee2ddab7fe'
+		});
+	
+		function sendmessage(){
+			var msg = document.getElementById("message").value;
+			
+			console.log("Sending voice message...");
+			console.log("	Message: " + msg);
+			
+			$.blockUI({ css: { 
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .5, 
+				color: '#fff'
+			}, message: '<h1>Sending message...</h1>' }); 
+			
+			var messageData = {
+				channel: 'rpipb-vmsg',
+				message: { "speak": msg },
+			};
+			
+			pubnub.publish({
+				channel: 'rpipb-vmsg',
+				message: { "speak": msg }
+			});
+			
+			$.unblockUI();
+		}
+	</script>
+  </head>
+  <body class="body">
+	<p><h1>Voice Messaging Demo using Windows 10 IoT Core, Raspberry Pi 2 and PubNub</h1></p>
+	</br></br>
+	<table class="inputtable">
+		<tr>
+			<td valign="top"><p class="inputlabel">Message to send</p></td>
+		</tr>
+			<td valign="top"><textarea maxlength="1200" rows="5" cols="120" id="message" class="inputfield"></textarea></td>
+		<tr>
+		</tr>
+		<tr>
+			<td align="right" valign="top"><input type="button", name="btnSend" value="Send Message" onclick="javascript:sendmessage();" class="inputbutton"/></td>
+		<tr>
+	</table>
+  </body>
+</html>
