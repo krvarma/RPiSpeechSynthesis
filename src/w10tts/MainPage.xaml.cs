@@ -19,8 +19,7 @@ namespace w10tts
     {
         // PubNub publish and subscribe keys
         private Pubnub pubnub = new Pubnub(
-            "<<publish-key>>", 
-            "<<subscribe-key>>");
+            "pub-c-60886db0-45cd-4921-9864-a4740e5493d8", "sub-c-075dba22-0cfe-11e4-8880-02ee2ddab7fe");
 
         private IAsyncOperation<SpeechRecognitionResult> recognitionOperation;
 
